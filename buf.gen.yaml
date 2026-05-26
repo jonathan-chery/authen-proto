@@ -1,0 +1,16 @@
+version: v1
+managed:
+  enabled: true
+plugins:
+  - plugin: go
+    out: pkg/proto
+    opt:
+      - paths=source_relative
+  - plugin: connect-go
+    out: pkg/proto
+    opt:
+      - paths=source_relative
+  - plugin: go-grpc
+    out: pkg/proto
+    opt:
+      - paths=source_relative

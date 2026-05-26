@@ -1,0 +1,200 @@
+syntax = "proto3";
+
+package authen.v1;
+
+import "authen/v1/common.proto";
+
+option go_package = "github.com/jonathan-chery/authen-proto/pkg/proto/authen/v1";
+
+service AdminService {
+  rpc IssueRegToken(IssueRegTokenRequest) returns (RegToken);
+  rpc ListRegTokens(ListRegTokensRequest) returns (RegTokenList);
+  rpc RevokeRegToken(RevokeRegTokenRequest) returns (RevokeRegTokenResponse);
+  rpc ApproveIdentity(ApproveIdentityRequest) returns (ApproveIdentityResponse);
+  rpc RejectIdentity(RejectIdentityRequest) returns (RejectIdentityResponse);
+  rpc ListKeys(ListKeysRequest) returns (KeyList);
+  rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse);
+  rpc ApplyPolicy(ApplyPolicyRequest) returns (ApplyPolicyResponse);
+  rpc ListPolicies(ListPoliciesRequest) returns (PolicyList);
+  rpc CheckPolicy(CheckPolicyRequest) returns (CheckPolicyResponse);
+  rpc GetServerInfo(GetServerInfoRequest) returns (ServerInfo);
+  rpc ListSessions(ListSessionsRequest) returns (SessionList);
+  rpc RevokeSession(RevokeSessionRequest) returns (RevokeSessionResponse);
+  rpc IssuePassport(IssuePassportRequest) returns (IssuePassportResponse);
+}
+
+message IssueRegTokenRequest {
+  int32 max_uses = 1;
+  int64 expires_at = 2;
+  repeated string scopes = 3;
+  repeated string roles = 4;
+  string label = 5;
+  bool auto_approve = 6;
+}
+
+message RegToken {
+  string token = 1;
+  int32 remaining_uses = 2;
+  int64 expires_at = 3;
+  repeated string scopes = 4;
+  repeated string roles = 5;
+  string label = 6;
+  string id = 7;
+  bool revoked = 8;
+  bool auto_approve = 9;
+  int32 max_uses = 10;
+}
+
+message ListRegTokensRequest {
+  Pagination pagination = 1;
+}
+
+message RegTokenList {
+  repeated RegToken tokens = 1;
+  int32 total = 2;
+}
+
+message RevokeRegTokenRequest {
+  string id = 1;
+}
+
+message RevokeRegTokenResponse {}
+
+message PublicKeyInfo {
+  string key_id = 1;
+  string key_type = 2;
+  string identity_id = 3;
+  string label = 4;
+  int64 registered_at = 5;
+  string status = 6;
+}
+
+message ListKeysRequest {
+  Pagination pagination = 1;
+  string identity_id = 2;
+}
+
+message KeyList {
+  repeated PublicKeyInfo keys = 1;
+  int32 total = 2;
+}
+
+message DeleteKeyRequest {
+  string key_id = 1;
+}
+
+message DeleteKeyResponse {}
+
+message PolicyRule {
+  string role = 1;
+  string action = 2;
+  string resource = 3;
+  string condition = 4;
+}
+
+message ApplyPolicyRequest {
+  string name = 1;
+  string description = 2;
+  repeated PolicyRule rules = 3;
+}
+
+message ApplyPolicyResponse {
+  string policy_id = 1;
+}
+
+message ListPoliciesRequest {
+  Pagination pagination = 1;
+}
+
+message PolicyInfo {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  repeated PolicyRule rules = 4;
+  int64 created_at = 5;
+  int64 updated_at = 6;
+}
+
+message PolicyList {
+  repeated PolicyInfo policies = 1;
+  int32 total = 2;
+}
+
+message CheckPolicyRequest {
+  string identity_id = 1;
+  string action = 2;
+  string resource = 3;
+  map<string, string> context = 4;
+}
+
+message CheckPolicyResponse {
+  bool allowed = 1;
+  repeated string matched_rules = 2;
+  string reason = 3;
+}
+
+message GetServerInfoRequest {}
+
+message ServerInfo {
+  string version = 1;
+  string protocol_version = 2;
+  string storage_backend = 3;
+  int64 uptime_seconds = 4;
+  int32 active_sessions = 5;
+  int32 registered_identities = 6;
+}
+
+message SessionInfo {
+  string session_id = 1;
+  string identity_id = 2;
+  string key_id = 3;
+  string label = 4;
+  string ip_address = 5;
+  string user_agent = 6;
+  int64 created_at = 7;
+  int64 last_used_at = 8;
+  string status = 9;
+}
+
+message ListSessionsRequest {
+  Pagination pagination = 1;
+  string identity_id = 2;
+  string status = 3;
+}
+
+message SessionList {
+  repeated SessionInfo sessions = 1;
+  int32 total = 2;
+}
+
+message RevokeSessionRequest {
+  string session_id = 1;
+}
+
+message RevokeSessionResponse {}
+
+message ApproveIdentityRequest {
+  string uuid = 1;
+}
+
+message ApproveIdentityResponse {
+  string key_id = 1;
+  string status = 2;
+}
+
+message RejectIdentityRequest {
+  string uuid = 1;
+}
+
+message RejectIdentityResponse {}
+
+message IssuePassportRequest {
+  string key_id = 1;
+  int32 expires_in = 2;  // Duration in seconds (default: 86400 = 24h)
+}
+
+message IssuePassportResponse {
+  string token = 1;
+  int32 expires_in = 2;
+  string key_id = 3;
+}

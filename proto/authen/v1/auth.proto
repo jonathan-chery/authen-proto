@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package authen.v1;
+
+import "authen/v1/common.proto";
+
+option go_package = "github.com/jonathan-chery/authen-proto/pkg/proto/authen/v1";
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Challenge(ChallengeRequest) returns (ChallengeResponse);
+  rpc Verify(VerifyRequest) returns (TokenPair);
+  rpc Refresh(RefreshRequest) returns (TokenPair);
+  rpc Revoke(RevokeRequest) returns (RevokeResponse);
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
+  rpc RotateKey(RotateKeyRequest) returns (RotateKeyResponse);
+  rpc VerifyPassport(VerifyPassportRequest) returns (VerifyPassportResponse);
+}
+
+message RegisterRequest {
+  string reg_token = 1;
+  string key_type = 2;
+  string public_key = 3;
+  string key_id = 4;
+  string identity_label = 5;
+  map<string, string> metadata = 6;
+}
+
+message RegisterResponse {
+  string identity_id = 1;
+  string key_id = 2;
+  string status = 3;
+  int64 registered_at = 4;
+  string uuid = 5;
+}
+
+message ChallengeRequest {
+  string key_id = 1;
+}
+
+message ChallengeResponse {
+  string challenge = 1;
+  int64 expires_at = 2;
+}
+
+message VerifyRequest {
+  string key_id = 1;
+  string challenge = 2;
+  string signature = 3;
+}
+
+message TokenPair {
+  string access_token = 1;
+  string refresh_token = 2;
+  string token_type = 3;
+  int32 expires_in = 4;
+  Identity identity = 5;
+}
+
+message RefreshRequest {
+  string refresh_token = 1;
+}
+
+message RevokeRequest {
+  string refresh_token = 1;
+}
+
+message RevokeResponse {}
+
+message ValidateRequest {
+  string access_token = 1;
+}
+
+message ValidateResponse {
+  bool valid = 1;
+  Identity identity = 2;
+  int64 expires_at = 3;
+}
+
+message RotateKeyRequest {
+  string key_id = 1;
+  string new_public_key = 2;
+  string challenge = 3;
+  string signature = 4;
+}
+
+message RotateKeyResponse {
+  string key_id = 1;
+  string status = 2;
+  int64 expires_at = 3;
+}
+
+message VerifyPassportRequest {
+  string token = 1;
+}
+
+message VerifyPassportResponse {
+  bool valid = 1;
+  string key_id = 2;
+  string identity_id = 3;
+  string issuer = 4;
+  int64 expires_at = 5;
+}
