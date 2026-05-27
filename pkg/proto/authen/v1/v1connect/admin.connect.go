@@ -61,6 +61,15 @@ const (
 	// AdminServiceCheckPolicyProcedure is the fully-qualified name of the AdminService's CheckPolicy
 	// RPC.
 	AdminServiceCheckPolicyProcedure = "/authen.v1.AdminService/CheckPolicy"
+	// AdminServiceCompilePolicyProcedure is the fully-qualified name of the AdminService's
+	// CompilePolicy RPC.
+	AdminServiceCompilePolicyProcedure = "/authen.v1.AdminService/CompilePolicy"
+	// AdminServiceListProposalsProcedure is the fully-qualified name of the AdminService's
+	// ListProposals RPC.
+	AdminServiceListProposalsProcedure = "/authen.v1.AdminService/ListProposals"
+	// AdminServiceApproveProposalProcedure is the fully-qualified name of the AdminService's
+	// ApproveProposal RPC.
+	AdminServiceApproveProposalProcedure = "/authen.v1.AdminService/ApproveProposal"
 	// AdminServiceGetServerInfoProcedure is the fully-qualified name of the AdminService's
 	// GetServerInfo RPC.
 	AdminServiceGetServerInfoProcedure = "/authen.v1.AdminService/GetServerInfo"
@@ -87,6 +96,9 @@ type AdminServiceClient interface {
 	ApplyPolicy(context.Context, *connect.Request[v1.ApplyPolicyRequest]) (*connect.Response[v1.ApplyPolicyResponse], error)
 	ListPolicies(context.Context, *connect.Request[v1.ListPoliciesRequest]) (*connect.Response[v1.PolicyList], error)
 	CheckPolicy(context.Context, *connect.Request[v1.CheckPolicyRequest]) (*connect.Response[v1.CheckPolicyResponse], error)
+	CompilePolicy(context.Context, *connect.Request[v1.CompilePolicyRequest]) (*connect.Response[v1.CompilePolicyResponse], error)
+	ListProposals(context.Context, *connect.Request[v1.ListProposalsRequest]) (*connect.Response[v1.ProposalList], error)
+	ApproveProposal(context.Context, *connect.Request[v1.ApproveProposalRequest]) (*connect.Response[v1.ApproveProposalResponse], error)
 	GetServerInfo(context.Context, *connect.Request[v1.GetServerInfoRequest]) (*connect.Response[v1.ServerInfo], error)
 	ListSessions(context.Context, *connect.Request[v1.ListSessionsRequest]) (*connect.Response[v1.SessionList], error)
 	RevokeSession(context.Context, *connect.Request[v1.RevokeSessionRequest]) (*connect.Response[v1.RevokeSessionResponse], error)
@@ -164,6 +176,24 @@ func NewAdminServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(adminServiceMethods.ByName("CheckPolicy")),
 			connect.WithClientOptions(opts...),
 		),
+		compilePolicy: connect.NewClient[v1.CompilePolicyRequest, v1.CompilePolicyResponse](
+			httpClient,
+			baseURL+AdminServiceCompilePolicyProcedure,
+			connect.WithSchema(adminServiceMethods.ByName("CompilePolicy")),
+			connect.WithClientOptions(opts...),
+		),
+		listProposals: connect.NewClient[v1.ListProposalsRequest, v1.ProposalList](
+			httpClient,
+			baseURL+AdminServiceListProposalsProcedure,
+			connect.WithSchema(adminServiceMethods.ByName("ListProposals")),
+			connect.WithClientOptions(opts...),
+		),
+		approveProposal: connect.NewClient[v1.ApproveProposalRequest, v1.ApproveProposalResponse](
+			httpClient,
+			baseURL+AdminServiceApproveProposalProcedure,
+			connect.WithSchema(adminServiceMethods.ByName("ApproveProposal")),
+			connect.WithClientOptions(opts...),
+		),
 		getServerInfo: connect.NewClient[v1.GetServerInfoRequest, v1.ServerInfo](
 			httpClient,
 			baseURL+AdminServiceGetServerInfoProcedure,
@@ -203,6 +233,9 @@ type adminServiceClient struct {
 	applyPolicy     *connect.Client[v1.ApplyPolicyRequest, v1.ApplyPolicyResponse]
 	listPolicies    *connect.Client[v1.ListPoliciesRequest, v1.PolicyList]
 	checkPolicy     *connect.Client[v1.CheckPolicyRequest, v1.CheckPolicyResponse]
+	compilePolicy   *connect.Client[v1.CompilePolicyRequest, v1.CompilePolicyResponse]
+	listProposals   *connect.Client[v1.ListProposalsRequest, v1.ProposalList]
+	approveProposal *connect.Client[v1.ApproveProposalRequest, v1.ApproveProposalResponse]
 	getServerInfo   *connect.Client[v1.GetServerInfoRequest, v1.ServerInfo]
 	listSessions    *connect.Client[v1.ListSessionsRequest, v1.SessionList]
 	revokeSession   *connect.Client[v1.RevokeSessionRequest, v1.RevokeSessionResponse]
@@ -259,6 +292,21 @@ func (c *adminServiceClient) CheckPolicy(ctx context.Context, req *connect.Reque
 	return c.checkPolicy.CallUnary(ctx, req)
 }
 
+// CompilePolicy calls authen.v1.AdminService.CompilePolicy.
+func (c *adminServiceClient) CompilePolicy(ctx context.Context, req *connect.Request[v1.CompilePolicyRequest]) (*connect.Response[v1.CompilePolicyResponse], error) {
+	return c.compilePolicy.CallUnary(ctx, req)
+}
+
+// ListProposals calls authen.v1.AdminService.ListProposals.
+func (c *adminServiceClient) ListProposals(ctx context.Context, req *connect.Request[v1.ListProposalsRequest]) (*connect.Response[v1.ProposalList], error) {
+	return c.listProposals.CallUnary(ctx, req)
+}
+
+// ApproveProposal calls authen.v1.AdminService.ApproveProposal.
+func (c *adminServiceClient) ApproveProposal(ctx context.Context, req *connect.Request[v1.ApproveProposalRequest]) (*connect.Response[v1.ApproveProposalResponse], error) {
+	return c.approveProposal.CallUnary(ctx, req)
+}
+
 // GetServerInfo calls authen.v1.AdminService.GetServerInfo.
 func (c *adminServiceClient) GetServerInfo(ctx context.Context, req *connect.Request[v1.GetServerInfoRequest]) (*connect.Response[v1.ServerInfo], error) {
 	return c.getServerInfo.CallUnary(ctx, req)
@@ -291,6 +339,9 @@ type AdminServiceHandler interface {
 	ApplyPolicy(context.Context, *connect.Request[v1.ApplyPolicyRequest]) (*connect.Response[v1.ApplyPolicyResponse], error)
 	ListPolicies(context.Context, *connect.Request[v1.ListPoliciesRequest]) (*connect.Response[v1.PolicyList], error)
 	CheckPolicy(context.Context, *connect.Request[v1.CheckPolicyRequest]) (*connect.Response[v1.CheckPolicyResponse], error)
+	CompilePolicy(context.Context, *connect.Request[v1.CompilePolicyRequest]) (*connect.Response[v1.CompilePolicyResponse], error)
+	ListProposals(context.Context, *connect.Request[v1.ListProposalsRequest]) (*connect.Response[v1.ProposalList], error)
+	ApproveProposal(context.Context, *connect.Request[v1.ApproveProposalRequest]) (*connect.Response[v1.ApproveProposalResponse], error)
 	GetServerInfo(context.Context, *connect.Request[v1.GetServerInfoRequest]) (*connect.Response[v1.ServerInfo], error)
 	ListSessions(context.Context, *connect.Request[v1.ListSessionsRequest]) (*connect.Response[v1.SessionList], error)
 	RevokeSession(context.Context, *connect.Request[v1.RevokeSessionRequest]) (*connect.Response[v1.RevokeSessionResponse], error)
@@ -364,6 +415,24 @@ func NewAdminServiceHandler(svc AdminServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(adminServiceMethods.ByName("CheckPolicy")),
 		connect.WithHandlerOptions(opts...),
 	)
+	adminServiceCompilePolicyHandler := connect.NewUnaryHandler(
+		AdminServiceCompilePolicyProcedure,
+		svc.CompilePolicy,
+		connect.WithSchema(adminServiceMethods.ByName("CompilePolicy")),
+		connect.WithHandlerOptions(opts...),
+	)
+	adminServiceListProposalsHandler := connect.NewUnaryHandler(
+		AdminServiceListProposalsProcedure,
+		svc.ListProposals,
+		connect.WithSchema(adminServiceMethods.ByName("ListProposals")),
+		connect.WithHandlerOptions(opts...),
+	)
+	adminServiceApproveProposalHandler := connect.NewUnaryHandler(
+		AdminServiceApproveProposalProcedure,
+		svc.ApproveProposal,
+		connect.WithSchema(adminServiceMethods.ByName("ApproveProposal")),
+		connect.WithHandlerOptions(opts...),
+	)
 	adminServiceGetServerInfoHandler := connect.NewUnaryHandler(
 		AdminServiceGetServerInfoProcedure,
 		svc.GetServerInfo,
@@ -410,6 +479,12 @@ func NewAdminServiceHandler(svc AdminServiceHandler, opts ...connect.HandlerOpti
 			adminServiceListPoliciesHandler.ServeHTTP(w, r)
 		case AdminServiceCheckPolicyProcedure:
 			adminServiceCheckPolicyHandler.ServeHTTP(w, r)
+		case AdminServiceCompilePolicyProcedure:
+			adminServiceCompilePolicyHandler.ServeHTTP(w, r)
+		case AdminServiceListProposalsProcedure:
+			adminServiceListProposalsHandler.ServeHTTP(w, r)
+		case AdminServiceApproveProposalProcedure:
+			adminServiceApproveProposalHandler.ServeHTTP(w, r)
 		case AdminServiceGetServerInfoProcedure:
 			adminServiceGetServerInfoHandler.ServeHTTP(w, r)
 		case AdminServiceListSessionsProcedure:
@@ -465,6 +540,18 @@ func (UnimplementedAdminServiceHandler) ListPolicies(context.Context, *connect.R
 
 func (UnimplementedAdminServiceHandler) CheckPolicy(context.Context, *connect.Request[v1.CheckPolicyRequest]) (*connect.Response[v1.CheckPolicyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("authen.v1.AdminService.CheckPolicy is not implemented"))
+}
+
+func (UnimplementedAdminServiceHandler) CompilePolicy(context.Context, *connect.Request[v1.CompilePolicyRequest]) (*connect.Response[v1.CompilePolicyResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("authen.v1.AdminService.CompilePolicy is not implemented"))
+}
+
+func (UnimplementedAdminServiceHandler) ListProposals(context.Context, *connect.Request[v1.ListProposalsRequest]) (*connect.Response[v1.ProposalList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("authen.v1.AdminService.ListProposals is not implemented"))
+}
+
+func (UnimplementedAdminServiceHandler) ApproveProposal(context.Context, *connect.Request[v1.ApproveProposalRequest]) (*connect.Response[v1.ApproveProposalResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("authen.v1.AdminService.ApproveProposal is not implemented"))
 }
 
 func (UnimplementedAdminServiceHandler) GetServerInfo(context.Context, *connect.Request[v1.GetServerInfoRequest]) (*connect.Response[v1.ServerInfo], error) {

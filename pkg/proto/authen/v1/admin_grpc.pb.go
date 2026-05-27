@@ -29,6 +29,9 @@ const (
 	AdminService_ApplyPolicy_FullMethodName     = "/authen.v1.AdminService/ApplyPolicy"
 	AdminService_ListPolicies_FullMethodName    = "/authen.v1.AdminService/ListPolicies"
 	AdminService_CheckPolicy_FullMethodName     = "/authen.v1.AdminService/CheckPolicy"
+	AdminService_CompilePolicy_FullMethodName   = "/authen.v1.AdminService/CompilePolicy"
+	AdminService_ListProposals_FullMethodName   = "/authen.v1.AdminService/ListProposals"
+	AdminService_ApproveProposal_FullMethodName = "/authen.v1.AdminService/ApproveProposal"
 	AdminService_GetServerInfo_FullMethodName   = "/authen.v1.AdminService/GetServerInfo"
 	AdminService_ListSessions_FullMethodName    = "/authen.v1.AdminService/ListSessions"
 	AdminService_RevokeSession_FullMethodName   = "/authen.v1.AdminService/RevokeSession"
@@ -49,6 +52,9 @@ type AdminServiceClient interface {
 	ApplyPolicy(ctx context.Context, in *ApplyPolicyRequest, opts ...grpc.CallOption) (*ApplyPolicyResponse, error)
 	ListPolicies(ctx context.Context, in *ListPoliciesRequest, opts ...grpc.CallOption) (*PolicyList, error)
 	CheckPolicy(ctx context.Context, in *CheckPolicyRequest, opts ...grpc.CallOption) (*CheckPolicyResponse, error)
+	CompilePolicy(ctx context.Context, in *CompilePolicyRequest, opts ...grpc.CallOption) (*CompilePolicyResponse, error)
+	ListProposals(ctx context.Context, in *ListProposalsRequest, opts ...grpc.CallOption) (*ProposalList, error)
+	ApproveProposal(ctx context.Context, in *ApproveProposalRequest, opts ...grpc.CallOption) (*ApproveProposalResponse, error)
 	GetServerInfo(ctx context.Context, in *GetServerInfoRequest, opts ...grpc.CallOption) (*ServerInfo, error)
 	ListSessions(ctx context.Context, in *ListSessionsRequest, opts ...grpc.CallOption) (*SessionList, error)
 	RevokeSession(ctx context.Context, in *RevokeSessionRequest, opts ...grpc.CallOption) (*RevokeSessionResponse, error)
@@ -163,6 +169,36 @@ func (c *adminServiceClient) CheckPolicy(ctx context.Context, in *CheckPolicyReq
 	return out, nil
 }
 
+func (c *adminServiceClient) CompilePolicy(ctx context.Context, in *CompilePolicyRequest, opts ...grpc.CallOption) (*CompilePolicyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompilePolicyResponse)
+	err := c.cc.Invoke(ctx, AdminService_CompilePolicy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ListProposals(ctx context.Context, in *ListProposalsRequest, opts ...grpc.CallOption) (*ProposalList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProposalList)
+	err := c.cc.Invoke(ctx, AdminService_ListProposals_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) ApproveProposal(ctx context.Context, in *ApproveProposalRequest, opts ...grpc.CallOption) (*ApproveProposalResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ApproveProposalResponse)
+	err := c.cc.Invoke(ctx, AdminService_ApproveProposal_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *adminServiceClient) GetServerInfo(ctx context.Context, in *GetServerInfoRequest, opts ...grpc.CallOption) (*ServerInfo, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ServerInfo)
@@ -217,6 +253,9 @@ type AdminServiceServer interface {
 	ApplyPolicy(context.Context, *ApplyPolicyRequest) (*ApplyPolicyResponse, error)
 	ListPolicies(context.Context, *ListPoliciesRequest) (*PolicyList, error)
 	CheckPolicy(context.Context, *CheckPolicyRequest) (*CheckPolicyResponse, error)
+	CompilePolicy(context.Context, *CompilePolicyRequest) (*CompilePolicyResponse, error)
+	ListProposals(context.Context, *ListProposalsRequest) (*ProposalList, error)
+	ApproveProposal(context.Context, *ApproveProposalRequest) (*ApproveProposalResponse, error)
 	GetServerInfo(context.Context, *GetServerInfoRequest) (*ServerInfo, error)
 	ListSessions(context.Context, *ListSessionsRequest) (*SessionList, error)
 	RevokeSession(context.Context, *RevokeSessionRequest) (*RevokeSessionResponse, error)
@@ -260,6 +299,15 @@ func (UnimplementedAdminServiceServer) ListPolicies(context.Context, *ListPolici
 }
 func (UnimplementedAdminServiceServer) CheckPolicy(context.Context, *CheckPolicyRequest) (*CheckPolicyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckPolicy not implemented")
+}
+func (UnimplementedAdminServiceServer) CompilePolicy(context.Context, *CompilePolicyRequest) (*CompilePolicyResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CompilePolicy not implemented")
+}
+func (UnimplementedAdminServiceServer) ListProposals(context.Context, *ListProposalsRequest) (*ProposalList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListProposals not implemented")
+}
+func (UnimplementedAdminServiceServer) ApproveProposal(context.Context, *ApproveProposalRequest) (*ApproveProposalResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ApproveProposal not implemented")
 }
 func (UnimplementedAdminServiceServer) GetServerInfo(context.Context, *GetServerInfoRequest) (*ServerInfo, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetServerInfo not implemented")
@@ -474,6 +522,60 @@ func _AdminService_CheckPolicy_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_CompilePolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompilePolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).CompilePolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_CompilePolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).CompilePolicy(ctx, req.(*CompilePolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ListProposals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProposalsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListProposals(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ListProposals_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListProposals(ctx, req.(*ListProposalsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_ApproveProposal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ApproveProposalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ApproveProposal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_ApproveProposal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ApproveProposal(ctx, req.(*ApproveProposalRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AdminService_GetServerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetServerInfoRequest)
 	if err := dec(in); err != nil {
@@ -592,6 +694,18 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckPolicy",
 			Handler:    _AdminService_CheckPolicy_Handler,
+		},
+		{
+			MethodName: "CompilePolicy",
+			Handler:    _AdminService_CompilePolicy_Handler,
+		},
+		{
+			MethodName: "ListProposals",
+			Handler:    _AdminService_ListProposals_Handler,
+		},
+		{
+			MethodName: "ApproveProposal",
+			Handler:    _AdminService_ApproveProposal_Handler,
 		},
 		{
 			MethodName: "GetServerInfo",

@@ -17,6 +17,9 @@ service AdminService {
   rpc ApplyPolicy(ApplyPolicyRequest) returns (ApplyPolicyResponse);
   rpc ListPolicies(ListPoliciesRequest) returns (PolicyList);
   rpc CheckPolicy(CheckPolicyRequest) returns (CheckPolicyResponse);
+  rpc CompilePolicy(CompilePolicyRequest) returns (CompilePolicyResponse);
+  rpc ListProposals(ListProposalsRequest) returns (ProposalList);
+  rpc ApproveProposal(ApproveProposalRequest) returns (ApproveProposalResponse);
   rpc GetServerInfo(GetServerInfoRequest) returns (ServerInfo);
   rpc ListSessions(ListSessionsRequest) returns (SessionList);
   rpc RevokeSession(RevokeSessionRequest) returns (RevokeSessionResponse);
@@ -133,6 +136,57 @@ message CheckPolicyResponse {
   bool allowed = 1;
   repeated string matched_rules = 2;
   string reason = 3;
+}
+
+message CompilePolicyRequest {
+  string prompt = 1;
+  string requester = 2;
+}
+
+message CompilePolicyResponse {
+  string proposal_id = 1;
+  repeated CompiledRule rules = 2;
+  string status = 3; // pending / rejected
+  string rejection_reason = 4;
+}
+
+message CompiledRule {
+  string role = 1;
+  string action = 2;
+  string resource = 3;
+  string condition = 4;
+}
+
+message ListProposalsRequest {
+  Pagination pagination = 1;
+  string status = 2; // optional filter
+}
+
+message ProposalInfo {
+  string id = 1;
+  string nl_input = 2;
+  repeated CompiledRule compiled_rules = 3;
+  string status = 4; // pending / approved / rejected
+  string rejection_reason = 5;
+  string proposed_by = 6;
+  string approved_by = 7;
+  int64 created_at = 8;
+  int64 updated_at = 9;
+}
+
+message ProposalList {
+  repeated ProposalInfo proposals = 1;
+  int32 total = 2;
+}
+
+message ApproveProposalRequest {
+  string proposal_id = 1;
+  string approver = 2;
+}
+
+message ApproveProposalResponse {
+  string policy_id = 1;
+  string status = 2;
 }
 
 message GetServerInfoRequest {}

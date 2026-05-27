@@ -1161,6 +1161,510 @@ func (x *CheckPolicyResponse) GetReason() string {
 	return ""
 }
 
+type CompilePolicyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Prompt        string                 `protobuf:"bytes,1,opt,name=prompt,proto3" json:"prompt,omitempty"`
+	Requester     string                 `protobuf:"bytes,2,opt,name=requester,proto3" json:"requester,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompilePolicyRequest) Reset() {
+	*x = CompilePolicyRequest{}
+	mi := &file_authen_v1_admin_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompilePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompilePolicyRequest) ProtoMessage() {}
+
+func (x *CompilePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompilePolicyRequest.ProtoReflect.Descriptor instead.
+func (*CompilePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *CompilePolicyRequest) GetPrompt() string {
+	if x != nil {
+		return x.Prompt
+	}
+	return ""
+}
+
+func (x *CompilePolicyRequest) GetRequester() string {
+	if x != nil {
+		return x.Requester
+	}
+	return ""
+}
+
+type CompilePolicyResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ProposalId      string                 `protobuf:"bytes,1,opt,name=proposal_id,json=proposalId,proto3" json:"proposal_id,omitempty"`
+	Rules           []*CompiledRule        `protobuf:"bytes,2,rep,name=rules,proto3" json:"rules,omitempty"`
+	Status          string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"` // pending / rejected
+	RejectionReason string                 `protobuf:"bytes,4,opt,name=rejection_reason,json=rejectionReason,proto3" json:"rejection_reason,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CompilePolicyResponse) Reset() {
+	*x = CompilePolicyResponse{}
+	mi := &file_authen_v1_admin_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompilePolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompilePolicyResponse) ProtoMessage() {}
+
+func (x *CompilePolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompilePolicyResponse.ProtoReflect.Descriptor instead.
+func (*CompilePolicyResponse) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *CompilePolicyResponse) GetProposalId() string {
+	if x != nil {
+		return x.ProposalId
+	}
+	return ""
+}
+
+func (x *CompilePolicyResponse) GetRules() []*CompiledRule {
+	if x != nil {
+		return x.Rules
+	}
+	return nil
+}
+
+func (x *CompilePolicyResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *CompilePolicyResponse) GetRejectionReason() string {
+	if x != nil {
+		return x.RejectionReason
+	}
+	return ""
+}
+
+type CompiledRule struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Role          string                 `protobuf:"bytes,1,opt,name=role,proto3" json:"role,omitempty"`
+	Action        string                 `protobuf:"bytes,2,opt,name=action,proto3" json:"action,omitempty"`
+	Resource      string                 `protobuf:"bytes,3,opt,name=resource,proto3" json:"resource,omitempty"`
+	Condition     string                 `protobuf:"bytes,4,opt,name=condition,proto3" json:"condition,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompiledRule) Reset() {
+	*x = CompiledRule{}
+	mi := &file_authen_v1_admin_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompiledRule) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompiledRule) ProtoMessage() {}
+
+func (x *CompiledRule) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompiledRule.ProtoReflect.Descriptor instead.
+func (*CompiledRule) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *CompiledRule) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *CompiledRule) GetAction() string {
+	if x != nil {
+		return x.Action
+	}
+	return ""
+}
+
+func (x *CompiledRule) GetResource() string {
+	if x != nil {
+		return x.Resource
+	}
+	return ""
+}
+
+func (x *CompiledRule) GetCondition() string {
+	if x != nil {
+		return x.Condition
+	}
+	return ""
+}
+
+type ListProposalsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Pagination    *Pagination            `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"` // optional filter
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListProposalsRequest) Reset() {
+	*x = ListProposalsRequest{}
+	mi := &file_authen_v1_admin_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListProposalsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListProposalsRequest) ProtoMessage() {}
+
+func (x *ListProposalsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListProposalsRequest.ProtoReflect.Descriptor instead.
+func (*ListProposalsRequest) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ListProposalsRequest) GetPagination() *Pagination {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+func (x *ListProposalsRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+type ProposalInfo struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	NlInput         string                 `protobuf:"bytes,2,opt,name=nl_input,json=nlInput,proto3" json:"nl_input,omitempty"`
+	CompiledRules   []*CompiledRule        `protobuf:"bytes,3,rep,name=compiled_rules,json=compiledRules,proto3" json:"compiled_rules,omitempty"`
+	Status          string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"` // pending / approved / rejected
+	RejectionReason string                 `protobuf:"bytes,5,opt,name=rejection_reason,json=rejectionReason,proto3" json:"rejection_reason,omitempty"`
+	ProposedBy      string                 `protobuf:"bytes,6,opt,name=proposed_by,json=proposedBy,proto3" json:"proposed_by,omitempty"`
+	ApprovedBy      string                 `protobuf:"bytes,7,opt,name=approved_by,json=approvedBy,proto3" json:"approved_by,omitempty"`
+	CreatedAt       int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt       int64                  `protobuf:"varint,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *ProposalInfo) Reset() {
+	*x = ProposalInfo{}
+	mi := &file_authen_v1_admin_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProposalInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProposalInfo) ProtoMessage() {}
+
+func (x *ProposalInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProposalInfo.ProtoReflect.Descriptor instead.
+func (*ProposalInfo) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ProposalInfo) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProposalInfo) GetNlInput() string {
+	if x != nil {
+		return x.NlInput
+	}
+	return ""
+}
+
+func (x *ProposalInfo) GetCompiledRules() []*CompiledRule {
+	if x != nil {
+		return x.CompiledRules
+	}
+	return nil
+}
+
+func (x *ProposalInfo) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ProposalInfo) GetRejectionReason() string {
+	if x != nil {
+		return x.RejectionReason
+	}
+	return ""
+}
+
+func (x *ProposalInfo) GetProposedBy() string {
+	if x != nil {
+		return x.ProposedBy
+	}
+	return ""
+}
+
+func (x *ProposalInfo) GetApprovedBy() string {
+	if x != nil {
+		return x.ApprovedBy
+	}
+	return ""
+}
+
+func (x *ProposalInfo) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *ProposalInfo) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
+type ProposalList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Proposals     []*ProposalInfo        `protobuf:"bytes,1,rep,name=proposals,proto3" json:"proposals,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProposalList) Reset() {
+	*x = ProposalList{}
+	mi := &file_authen_v1_admin_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProposalList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProposalList) ProtoMessage() {}
+
+func (x *ProposalList) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProposalList.ProtoReflect.Descriptor instead.
+func (*ProposalList) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ProposalList) GetProposals() []*ProposalInfo {
+	if x != nil {
+		return x.Proposals
+	}
+	return nil
+}
+
+func (x *ProposalList) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+type ApproveProposalRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProposalId    string                 `protobuf:"bytes,1,opt,name=proposal_id,json=proposalId,proto3" json:"proposal_id,omitempty"`
+	Approver      string                 `protobuf:"bytes,2,opt,name=approver,proto3" json:"approver,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ApproveProposalRequest) Reset() {
+	*x = ApproveProposalRequest{}
+	mi := &file_authen_v1_admin_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ApproveProposalRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ApproveProposalRequest) ProtoMessage() {}
+
+func (x *ApproveProposalRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ApproveProposalRequest.ProtoReflect.Descriptor instead.
+func (*ApproveProposalRequest) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ApproveProposalRequest) GetProposalId() string {
+	if x != nil {
+		return x.ProposalId
+	}
+	return ""
+}
+
+func (x *ApproveProposalRequest) GetApprover() string {
+	if x != nil {
+		return x.Approver
+	}
+	return ""
+}
+
+type ApproveProposalResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PolicyId      string                 `protobuf:"bytes,1,opt,name=policy_id,json=policyId,proto3" json:"policy_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ApproveProposalResponse) Reset() {
+	*x = ApproveProposalResponse{}
+	mi := &file_authen_v1_admin_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ApproveProposalResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ApproveProposalResponse) ProtoMessage() {}
+
+func (x *ApproveProposalResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_authen_v1_admin_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ApproveProposalResponse.ProtoReflect.Descriptor instead.
+func (*ApproveProposalResponse) Descriptor() ([]byte, []int) {
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ApproveProposalResponse) GetPolicyId() string {
+	if x != nil {
+		return x.PolicyId
+	}
+	return ""
+}
+
+func (x *ApproveProposalResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 type GetServerInfoRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1169,7 +1673,7 @@ type GetServerInfoRequest struct {
 
 func (x *GetServerInfoRequest) Reset() {
 	*x = GetServerInfoRequest{}
-	mi := &file_authen_v1_admin_proto_msgTypes[19]
+	mi := &file_authen_v1_admin_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1181,7 +1685,7 @@ func (x *GetServerInfoRequest) String() string {
 func (*GetServerInfoRequest) ProtoMessage() {}
 
 func (x *GetServerInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[19]
+	mi := &file_authen_v1_admin_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1194,7 +1698,7 @@ func (x *GetServerInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetServerInfoRequest.ProtoReflect.Descriptor instead.
 func (*GetServerInfoRequest) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{19}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{27}
 }
 
 type ServerInfo struct {
@@ -1211,7 +1715,7 @@ type ServerInfo struct {
 
 func (x *ServerInfo) Reset() {
 	*x = ServerInfo{}
-	mi := &file_authen_v1_admin_proto_msgTypes[20]
+	mi := &file_authen_v1_admin_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1223,7 +1727,7 @@ func (x *ServerInfo) String() string {
 func (*ServerInfo) ProtoMessage() {}
 
 func (x *ServerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[20]
+	mi := &file_authen_v1_admin_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1236,7 +1740,7 @@ func (x *ServerInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerInfo.ProtoReflect.Descriptor instead.
 func (*ServerInfo) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{20}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ServerInfo) GetVersion() string {
@@ -1298,7 +1802,7 @@ type SessionInfo struct {
 
 func (x *SessionInfo) Reset() {
 	*x = SessionInfo{}
-	mi := &file_authen_v1_admin_proto_msgTypes[21]
+	mi := &file_authen_v1_admin_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1310,7 +1814,7 @@ func (x *SessionInfo) String() string {
 func (*SessionInfo) ProtoMessage() {}
 
 func (x *SessionInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[21]
+	mi := &file_authen_v1_admin_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1323,7 +1827,7 @@ func (x *SessionInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionInfo.ProtoReflect.Descriptor instead.
 func (*SessionInfo) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{21}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SessionInfo) GetSessionId() string {
@@ -1400,7 +1904,7 @@ type ListSessionsRequest struct {
 
 func (x *ListSessionsRequest) Reset() {
 	*x = ListSessionsRequest{}
-	mi := &file_authen_v1_admin_proto_msgTypes[22]
+	mi := &file_authen_v1_admin_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1412,7 +1916,7 @@ func (x *ListSessionsRequest) String() string {
 func (*ListSessionsRequest) ProtoMessage() {}
 
 func (x *ListSessionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[22]
+	mi := &file_authen_v1_admin_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1425,7 +1929,7 @@ func (x *ListSessionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSessionsRequest.ProtoReflect.Descriptor instead.
 func (*ListSessionsRequest) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{22}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListSessionsRequest) GetPagination() *Pagination {
@@ -1459,7 +1963,7 @@ type SessionList struct {
 
 func (x *SessionList) Reset() {
 	*x = SessionList{}
-	mi := &file_authen_v1_admin_proto_msgTypes[23]
+	mi := &file_authen_v1_admin_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1471,7 +1975,7 @@ func (x *SessionList) String() string {
 func (*SessionList) ProtoMessage() {}
 
 func (x *SessionList) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[23]
+	mi := &file_authen_v1_admin_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1484,7 +1988,7 @@ func (x *SessionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionList.ProtoReflect.Descriptor instead.
 func (*SessionList) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{23}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SessionList) GetSessions() []*SessionInfo {
@@ -1510,7 +2014,7 @@ type RevokeSessionRequest struct {
 
 func (x *RevokeSessionRequest) Reset() {
 	*x = RevokeSessionRequest{}
-	mi := &file_authen_v1_admin_proto_msgTypes[24]
+	mi := &file_authen_v1_admin_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1522,7 +2026,7 @@ func (x *RevokeSessionRequest) String() string {
 func (*RevokeSessionRequest) ProtoMessage() {}
 
 func (x *RevokeSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[24]
+	mi := &file_authen_v1_admin_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1535,7 +2039,7 @@ func (x *RevokeSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeSessionRequest.ProtoReflect.Descriptor instead.
 func (*RevokeSessionRequest) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{24}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *RevokeSessionRequest) GetSessionId() string {
@@ -1553,7 +2057,7 @@ type RevokeSessionResponse struct {
 
 func (x *RevokeSessionResponse) Reset() {
 	*x = RevokeSessionResponse{}
-	mi := &file_authen_v1_admin_proto_msgTypes[25]
+	mi := &file_authen_v1_admin_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1565,7 +2069,7 @@ func (x *RevokeSessionResponse) String() string {
 func (*RevokeSessionResponse) ProtoMessage() {}
 
 func (x *RevokeSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[25]
+	mi := &file_authen_v1_admin_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1578,7 +2082,7 @@ func (x *RevokeSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RevokeSessionResponse.ProtoReflect.Descriptor instead.
 func (*RevokeSessionResponse) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{25}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{33}
 }
 
 type ApproveIdentityRequest struct {
@@ -1590,7 +2094,7 @@ type ApproveIdentityRequest struct {
 
 func (x *ApproveIdentityRequest) Reset() {
 	*x = ApproveIdentityRequest{}
-	mi := &file_authen_v1_admin_proto_msgTypes[26]
+	mi := &file_authen_v1_admin_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1602,7 +2106,7 @@ func (x *ApproveIdentityRequest) String() string {
 func (*ApproveIdentityRequest) ProtoMessage() {}
 
 func (x *ApproveIdentityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[26]
+	mi := &file_authen_v1_admin_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1615,7 +2119,7 @@ func (x *ApproveIdentityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApproveIdentityRequest.ProtoReflect.Descriptor instead.
 func (*ApproveIdentityRequest) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{26}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *ApproveIdentityRequest) GetUuid() string {
@@ -1635,7 +2139,7 @@ type ApproveIdentityResponse struct {
 
 func (x *ApproveIdentityResponse) Reset() {
 	*x = ApproveIdentityResponse{}
-	mi := &file_authen_v1_admin_proto_msgTypes[27]
+	mi := &file_authen_v1_admin_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1647,7 +2151,7 @@ func (x *ApproveIdentityResponse) String() string {
 func (*ApproveIdentityResponse) ProtoMessage() {}
 
 func (x *ApproveIdentityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[27]
+	mi := &file_authen_v1_admin_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1660,7 +2164,7 @@ func (x *ApproveIdentityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApproveIdentityResponse.ProtoReflect.Descriptor instead.
 func (*ApproveIdentityResponse) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{27}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *ApproveIdentityResponse) GetKeyId() string {
@@ -1686,7 +2190,7 @@ type RejectIdentityRequest struct {
 
 func (x *RejectIdentityRequest) Reset() {
 	*x = RejectIdentityRequest{}
-	mi := &file_authen_v1_admin_proto_msgTypes[28]
+	mi := &file_authen_v1_admin_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1698,7 +2202,7 @@ func (x *RejectIdentityRequest) String() string {
 func (*RejectIdentityRequest) ProtoMessage() {}
 
 func (x *RejectIdentityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[28]
+	mi := &file_authen_v1_admin_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1711,7 +2215,7 @@ func (x *RejectIdentityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RejectIdentityRequest.ProtoReflect.Descriptor instead.
 func (*RejectIdentityRequest) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{28}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *RejectIdentityRequest) GetUuid() string {
@@ -1729,7 +2233,7 @@ type RejectIdentityResponse struct {
 
 func (x *RejectIdentityResponse) Reset() {
 	*x = RejectIdentityResponse{}
-	mi := &file_authen_v1_admin_proto_msgTypes[29]
+	mi := &file_authen_v1_admin_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1741,7 +2245,7 @@ func (x *RejectIdentityResponse) String() string {
 func (*RejectIdentityResponse) ProtoMessage() {}
 
 func (x *RejectIdentityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[29]
+	mi := &file_authen_v1_admin_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1754,7 +2258,7 @@ func (x *RejectIdentityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RejectIdentityResponse.ProtoReflect.Descriptor instead.
 func (*RejectIdentityResponse) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{29}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{37}
 }
 
 type IssuePassportRequest struct {
@@ -1767,7 +2271,7 @@ type IssuePassportRequest struct {
 
 func (x *IssuePassportRequest) Reset() {
 	*x = IssuePassportRequest{}
-	mi := &file_authen_v1_admin_proto_msgTypes[30]
+	mi := &file_authen_v1_admin_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1779,7 +2283,7 @@ func (x *IssuePassportRequest) String() string {
 func (*IssuePassportRequest) ProtoMessage() {}
 
 func (x *IssuePassportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[30]
+	mi := &file_authen_v1_admin_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1792,7 +2296,7 @@ func (x *IssuePassportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IssuePassportRequest.ProtoReflect.Descriptor instead.
 func (*IssuePassportRequest) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{30}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *IssuePassportRequest) GetKeyId() string {
@@ -1820,7 +2324,7 @@ type IssuePassportResponse struct {
 
 func (x *IssuePassportResponse) Reset() {
 	*x = IssuePassportResponse{}
-	mi := &file_authen_v1_admin_proto_msgTypes[31]
+	mi := &file_authen_v1_admin_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1832,7 +2336,7 @@ func (x *IssuePassportResponse) String() string {
 func (*IssuePassportResponse) ProtoMessage() {}
 
 func (x *IssuePassportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_authen_v1_admin_proto_msgTypes[31]
+	mi := &file_authen_v1_admin_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1845,7 +2349,7 @@ func (x *IssuePassportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IssuePassportResponse.ProtoReflect.Descriptor instead.
 func (*IssuePassportResponse) Descriptor() ([]byte, []int) {
-	return file_authen_v1_admin_proto_rawDescGZIP(), []int{31}
+	return file_authen_v1_admin_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *IssuePassportResponse) GetToken() string {
@@ -1970,7 +2474,50 @@ const file_authen_v1_admin_proto_rawDesc = "" +
 	"\x13CheckPolicyResponse\x12\x18\n" +
 	"\aallowed\x18\x01 \x01(\bR\aallowed\x12#\n" +
 	"\rmatched_rules\x18\x02 \x03(\tR\fmatchedRules\x12\x16\n" +
-	"\x06reason\x18\x03 \x01(\tR\x06reason\"\x16\n" +
+	"\x06reason\x18\x03 \x01(\tR\x06reason\"L\n" +
+	"\x14CompilePolicyRequest\x12\x16\n" +
+	"\x06prompt\x18\x01 \x01(\tR\x06prompt\x12\x1c\n" +
+	"\trequester\x18\x02 \x01(\tR\trequester\"\xaa\x01\n" +
+	"\x15CompilePolicyResponse\x12\x1f\n" +
+	"\vproposal_id\x18\x01 \x01(\tR\n" +
+	"proposalId\x12-\n" +
+	"\x05rules\x18\x02 \x03(\v2\x17.authen.v1.CompiledRuleR\x05rules\x12\x16\n" +
+	"\x06status\x18\x03 \x01(\tR\x06status\x12)\n" +
+	"\x10rejection_reason\x18\x04 \x01(\tR\x0frejectionReason\"t\n" +
+	"\fCompiledRule\x12\x12\n" +
+	"\x04role\x18\x01 \x01(\tR\x04role\x12\x16\n" +
+	"\x06action\x18\x02 \x01(\tR\x06action\x12\x1a\n" +
+	"\bresource\x18\x03 \x01(\tR\bresource\x12\x1c\n" +
+	"\tcondition\x18\x04 \x01(\tR\tcondition\"e\n" +
+	"\x14ListProposalsRequest\x125\n" +
+	"\n" +
+	"pagination\x18\x01 \x01(\v2\x15.authen.v1.PaginationR\n" +
+	"pagination\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\"\xbc\x02\n" +
+	"\fProposalInfo\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\bnl_input\x18\x02 \x01(\tR\anlInput\x12>\n" +
+	"\x0ecompiled_rules\x18\x03 \x03(\v2\x17.authen.v1.CompiledRuleR\rcompiledRules\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12)\n" +
+	"\x10rejection_reason\x18\x05 \x01(\tR\x0frejectionReason\x12\x1f\n" +
+	"\vproposed_by\x18\x06 \x01(\tR\n" +
+	"proposedBy\x12\x1f\n" +
+	"\vapproved_by\x18\a \x01(\tR\n" +
+	"approvedBy\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\b \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\t \x01(\x03R\tupdatedAt\"[\n" +
+	"\fProposalList\x125\n" +
+	"\tproposals\x18\x01 \x03(\v2\x17.authen.v1.ProposalInfoR\tproposals\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"U\n" +
+	"\x16ApproveProposalRequest\x12\x1f\n" +
+	"\vproposal_id\x18\x01 \x01(\tR\n" +
+	"proposalId\x12\x1a\n" +
+	"\bapprover\x18\x02 \x01(\tR\bapprover\"N\n" +
+	"\x17ApproveProposalResponse\x12\x1b\n" +
+	"\tpolicy_id\x18\x01 \x01(\tR\bpolicyId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\"\x16\n" +
 	"\x14GetServerInfoRequest\"\xff\x01\n" +
 	"\n" +
 	"ServerInfo\x12\x18\n" +
@@ -2026,7 +2573,8 @@ const file_authen_v1_admin_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1d\n" +
 	"\n" +
 	"expires_in\x18\x02 \x01(\x05R\texpiresIn\x12\x15\n" +
-	"\x06key_id\x18\x03 \x01(\tR\x05keyId2\xc8\b\n" +
+	"\x06key_id\x18\x03 \x01(\tR\x05keyId2\xc1\n" +
+	"\n" +
 	"\fAdminService\x12E\n" +
 	"\rIssueRegToken\x12\x1f.authen.v1.IssueRegTokenRequest\x1a\x13.authen.v1.RegToken\x12I\n" +
 	"\rListRegTokens\x12\x1f.authen.v1.ListRegTokensRequest\x1a\x17.authen.v1.RegTokenList\x12U\n" +
@@ -2037,7 +2585,10 @@ const file_authen_v1_admin_proto_rawDesc = "" +
 	"\tDeleteKey\x12\x1b.authen.v1.DeleteKeyRequest\x1a\x1c.authen.v1.DeleteKeyResponse\x12L\n" +
 	"\vApplyPolicy\x12\x1d.authen.v1.ApplyPolicyRequest\x1a\x1e.authen.v1.ApplyPolicyResponse\x12E\n" +
 	"\fListPolicies\x12\x1e.authen.v1.ListPoliciesRequest\x1a\x15.authen.v1.PolicyList\x12L\n" +
-	"\vCheckPolicy\x12\x1d.authen.v1.CheckPolicyRequest\x1a\x1e.authen.v1.CheckPolicyResponse\x12G\n" +
+	"\vCheckPolicy\x12\x1d.authen.v1.CheckPolicyRequest\x1a\x1e.authen.v1.CheckPolicyResponse\x12R\n" +
+	"\rCompilePolicy\x12\x1f.authen.v1.CompilePolicyRequest\x1a .authen.v1.CompilePolicyResponse\x12I\n" +
+	"\rListProposals\x12\x1f.authen.v1.ListProposalsRequest\x1a\x17.authen.v1.ProposalList\x12X\n" +
+	"\x0fApproveProposal\x12!.authen.v1.ApproveProposalRequest\x1a\".authen.v1.ApproveProposalResponse\x12G\n" +
 	"\rGetServerInfo\x12\x1f.authen.v1.GetServerInfoRequest\x1a\x15.authen.v1.ServerInfo\x12F\n" +
 	"\fListSessions\x12\x1e.authen.v1.ListSessionsRequest\x1a\x16.authen.v1.SessionList\x12R\n" +
 	"\rRevokeSession\x12\x1f.authen.v1.RevokeSessionRequest\x1a .authen.v1.RevokeSessionResponse\x12R\n" +
@@ -2055,7 +2606,7 @@ func file_authen_v1_admin_proto_rawDescGZIP() []byte {
 	return file_authen_v1_admin_proto_rawDescData
 }
 
-var file_authen_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_authen_v1_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_authen_v1_admin_proto_goTypes = []any{
 	(*IssueRegTokenRequest)(nil),    // 0: authen.v1.IssueRegTokenRequest
 	(*RegToken)(nil),                // 1: authen.v1.RegToken
@@ -2076,67 +2627,85 @@ var file_authen_v1_admin_proto_goTypes = []any{
 	(*PolicyList)(nil),              // 16: authen.v1.PolicyList
 	(*CheckPolicyRequest)(nil),      // 17: authen.v1.CheckPolicyRequest
 	(*CheckPolicyResponse)(nil),     // 18: authen.v1.CheckPolicyResponse
-	(*GetServerInfoRequest)(nil),    // 19: authen.v1.GetServerInfoRequest
-	(*ServerInfo)(nil),              // 20: authen.v1.ServerInfo
-	(*SessionInfo)(nil),             // 21: authen.v1.SessionInfo
-	(*ListSessionsRequest)(nil),     // 22: authen.v1.ListSessionsRequest
-	(*SessionList)(nil),             // 23: authen.v1.SessionList
-	(*RevokeSessionRequest)(nil),    // 24: authen.v1.RevokeSessionRequest
-	(*RevokeSessionResponse)(nil),   // 25: authen.v1.RevokeSessionResponse
-	(*ApproveIdentityRequest)(nil),  // 26: authen.v1.ApproveIdentityRequest
-	(*ApproveIdentityResponse)(nil), // 27: authen.v1.ApproveIdentityResponse
-	(*RejectIdentityRequest)(nil),   // 28: authen.v1.RejectIdentityRequest
-	(*RejectIdentityResponse)(nil),  // 29: authen.v1.RejectIdentityResponse
-	(*IssuePassportRequest)(nil),    // 30: authen.v1.IssuePassportRequest
-	(*IssuePassportResponse)(nil),   // 31: authen.v1.IssuePassportResponse
-	nil,                             // 32: authen.v1.CheckPolicyRequest.ContextEntry
-	(*Pagination)(nil),              // 33: authen.v1.Pagination
+	(*CompilePolicyRequest)(nil),    // 19: authen.v1.CompilePolicyRequest
+	(*CompilePolicyResponse)(nil),   // 20: authen.v1.CompilePolicyResponse
+	(*CompiledRule)(nil),            // 21: authen.v1.CompiledRule
+	(*ListProposalsRequest)(nil),    // 22: authen.v1.ListProposalsRequest
+	(*ProposalInfo)(nil),            // 23: authen.v1.ProposalInfo
+	(*ProposalList)(nil),            // 24: authen.v1.ProposalList
+	(*ApproveProposalRequest)(nil),  // 25: authen.v1.ApproveProposalRequest
+	(*ApproveProposalResponse)(nil), // 26: authen.v1.ApproveProposalResponse
+	(*GetServerInfoRequest)(nil),    // 27: authen.v1.GetServerInfoRequest
+	(*ServerInfo)(nil),              // 28: authen.v1.ServerInfo
+	(*SessionInfo)(nil),             // 29: authen.v1.SessionInfo
+	(*ListSessionsRequest)(nil),     // 30: authen.v1.ListSessionsRequest
+	(*SessionList)(nil),             // 31: authen.v1.SessionList
+	(*RevokeSessionRequest)(nil),    // 32: authen.v1.RevokeSessionRequest
+	(*RevokeSessionResponse)(nil),   // 33: authen.v1.RevokeSessionResponse
+	(*ApproveIdentityRequest)(nil),  // 34: authen.v1.ApproveIdentityRequest
+	(*ApproveIdentityResponse)(nil), // 35: authen.v1.ApproveIdentityResponse
+	(*RejectIdentityRequest)(nil),   // 36: authen.v1.RejectIdentityRequest
+	(*RejectIdentityResponse)(nil),  // 37: authen.v1.RejectIdentityResponse
+	(*IssuePassportRequest)(nil),    // 38: authen.v1.IssuePassportRequest
+	(*IssuePassportResponse)(nil),   // 39: authen.v1.IssuePassportResponse
+	nil,                             // 40: authen.v1.CheckPolicyRequest.ContextEntry
+	(*Pagination)(nil),              // 41: authen.v1.Pagination
 }
 var file_authen_v1_admin_proto_depIdxs = []int32{
-	33, // 0: authen.v1.ListRegTokensRequest.pagination:type_name -> authen.v1.Pagination
+	41, // 0: authen.v1.ListRegTokensRequest.pagination:type_name -> authen.v1.Pagination
 	1,  // 1: authen.v1.RegTokenList.tokens:type_name -> authen.v1.RegToken
-	33, // 2: authen.v1.ListKeysRequest.pagination:type_name -> authen.v1.Pagination
+	41, // 2: authen.v1.ListKeysRequest.pagination:type_name -> authen.v1.Pagination
 	6,  // 3: authen.v1.KeyList.keys:type_name -> authen.v1.PublicKeyInfo
 	11, // 4: authen.v1.ApplyPolicyRequest.rules:type_name -> authen.v1.PolicyRule
-	33, // 5: authen.v1.ListPoliciesRequest.pagination:type_name -> authen.v1.Pagination
+	41, // 5: authen.v1.ListPoliciesRequest.pagination:type_name -> authen.v1.Pagination
 	11, // 6: authen.v1.PolicyInfo.rules:type_name -> authen.v1.PolicyRule
 	15, // 7: authen.v1.PolicyList.policies:type_name -> authen.v1.PolicyInfo
-	32, // 8: authen.v1.CheckPolicyRequest.context:type_name -> authen.v1.CheckPolicyRequest.ContextEntry
-	33, // 9: authen.v1.ListSessionsRequest.pagination:type_name -> authen.v1.Pagination
-	21, // 10: authen.v1.SessionList.sessions:type_name -> authen.v1.SessionInfo
-	0,  // 11: authen.v1.AdminService.IssueRegToken:input_type -> authen.v1.IssueRegTokenRequest
-	2,  // 12: authen.v1.AdminService.ListRegTokens:input_type -> authen.v1.ListRegTokensRequest
-	4,  // 13: authen.v1.AdminService.RevokeRegToken:input_type -> authen.v1.RevokeRegTokenRequest
-	26, // 14: authen.v1.AdminService.ApproveIdentity:input_type -> authen.v1.ApproveIdentityRequest
-	28, // 15: authen.v1.AdminService.RejectIdentity:input_type -> authen.v1.RejectIdentityRequest
-	7,  // 16: authen.v1.AdminService.ListKeys:input_type -> authen.v1.ListKeysRequest
-	9,  // 17: authen.v1.AdminService.DeleteKey:input_type -> authen.v1.DeleteKeyRequest
-	12, // 18: authen.v1.AdminService.ApplyPolicy:input_type -> authen.v1.ApplyPolicyRequest
-	14, // 19: authen.v1.AdminService.ListPolicies:input_type -> authen.v1.ListPoliciesRequest
-	17, // 20: authen.v1.AdminService.CheckPolicy:input_type -> authen.v1.CheckPolicyRequest
-	19, // 21: authen.v1.AdminService.GetServerInfo:input_type -> authen.v1.GetServerInfoRequest
-	22, // 22: authen.v1.AdminService.ListSessions:input_type -> authen.v1.ListSessionsRequest
-	24, // 23: authen.v1.AdminService.RevokeSession:input_type -> authen.v1.RevokeSessionRequest
-	30, // 24: authen.v1.AdminService.IssuePassport:input_type -> authen.v1.IssuePassportRequest
-	1,  // 25: authen.v1.AdminService.IssueRegToken:output_type -> authen.v1.RegToken
-	3,  // 26: authen.v1.AdminService.ListRegTokens:output_type -> authen.v1.RegTokenList
-	5,  // 27: authen.v1.AdminService.RevokeRegToken:output_type -> authen.v1.RevokeRegTokenResponse
-	27, // 28: authen.v1.AdminService.ApproveIdentity:output_type -> authen.v1.ApproveIdentityResponse
-	29, // 29: authen.v1.AdminService.RejectIdentity:output_type -> authen.v1.RejectIdentityResponse
-	8,  // 30: authen.v1.AdminService.ListKeys:output_type -> authen.v1.KeyList
-	10, // 31: authen.v1.AdminService.DeleteKey:output_type -> authen.v1.DeleteKeyResponse
-	13, // 32: authen.v1.AdminService.ApplyPolicy:output_type -> authen.v1.ApplyPolicyResponse
-	16, // 33: authen.v1.AdminService.ListPolicies:output_type -> authen.v1.PolicyList
-	18, // 34: authen.v1.AdminService.CheckPolicy:output_type -> authen.v1.CheckPolicyResponse
-	20, // 35: authen.v1.AdminService.GetServerInfo:output_type -> authen.v1.ServerInfo
-	23, // 36: authen.v1.AdminService.ListSessions:output_type -> authen.v1.SessionList
-	25, // 37: authen.v1.AdminService.RevokeSession:output_type -> authen.v1.RevokeSessionResponse
-	31, // 38: authen.v1.AdminService.IssuePassport:output_type -> authen.v1.IssuePassportResponse
-	25, // [25:39] is the sub-list for method output_type
-	11, // [11:25] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	40, // 8: authen.v1.CheckPolicyRequest.context:type_name -> authen.v1.CheckPolicyRequest.ContextEntry
+	21, // 9: authen.v1.CompilePolicyResponse.rules:type_name -> authen.v1.CompiledRule
+	41, // 10: authen.v1.ListProposalsRequest.pagination:type_name -> authen.v1.Pagination
+	21, // 11: authen.v1.ProposalInfo.compiled_rules:type_name -> authen.v1.CompiledRule
+	23, // 12: authen.v1.ProposalList.proposals:type_name -> authen.v1.ProposalInfo
+	41, // 13: authen.v1.ListSessionsRequest.pagination:type_name -> authen.v1.Pagination
+	29, // 14: authen.v1.SessionList.sessions:type_name -> authen.v1.SessionInfo
+	0,  // 15: authen.v1.AdminService.IssueRegToken:input_type -> authen.v1.IssueRegTokenRequest
+	2,  // 16: authen.v1.AdminService.ListRegTokens:input_type -> authen.v1.ListRegTokensRequest
+	4,  // 17: authen.v1.AdminService.RevokeRegToken:input_type -> authen.v1.RevokeRegTokenRequest
+	34, // 18: authen.v1.AdminService.ApproveIdentity:input_type -> authen.v1.ApproveIdentityRequest
+	36, // 19: authen.v1.AdminService.RejectIdentity:input_type -> authen.v1.RejectIdentityRequest
+	7,  // 20: authen.v1.AdminService.ListKeys:input_type -> authen.v1.ListKeysRequest
+	9,  // 21: authen.v1.AdminService.DeleteKey:input_type -> authen.v1.DeleteKeyRequest
+	12, // 22: authen.v1.AdminService.ApplyPolicy:input_type -> authen.v1.ApplyPolicyRequest
+	14, // 23: authen.v1.AdminService.ListPolicies:input_type -> authen.v1.ListPoliciesRequest
+	17, // 24: authen.v1.AdminService.CheckPolicy:input_type -> authen.v1.CheckPolicyRequest
+	19, // 25: authen.v1.AdminService.CompilePolicy:input_type -> authen.v1.CompilePolicyRequest
+	22, // 26: authen.v1.AdminService.ListProposals:input_type -> authen.v1.ListProposalsRequest
+	25, // 27: authen.v1.AdminService.ApproveProposal:input_type -> authen.v1.ApproveProposalRequest
+	27, // 28: authen.v1.AdminService.GetServerInfo:input_type -> authen.v1.GetServerInfoRequest
+	30, // 29: authen.v1.AdminService.ListSessions:input_type -> authen.v1.ListSessionsRequest
+	32, // 30: authen.v1.AdminService.RevokeSession:input_type -> authen.v1.RevokeSessionRequest
+	38, // 31: authen.v1.AdminService.IssuePassport:input_type -> authen.v1.IssuePassportRequest
+	1,  // 32: authen.v1.AdminService.IssueRegToken:output_type -> authen.v1.RegToken
+	3,  // 33: authen.v1.AdminService.ListRegTokens:output_type -> authen.v1.RegTokenList
+	5,  // 34: authen.v1.AdminService.RevokeRegToken:output_type -> authen.v1.RevokeRegTokenResponse
+	35, // 35: authen.v1.AdminService.ApproveIdentity:output_type -> authen.v1.ApproveIdentityResponse
+	37, // 36: authen.v1.AdminService.RejectIdentity:output_type -> authen.v1.RejectIdentityResponse
+	8,  // 37: authen.v1.AdminService.ListKeys:output_type -> authen.v1.KeyList
+	10, // 38: authen.v1.AdminService.DeleteKey:output_type -> authen.v1.DeleteKeyResponse
+	13, // 39: authen.v1.AdminService.ApplyPolicy:output_type -> authen.v1.ApplyPolicyResponse
+	16, // 40: authen.v1.AdminService.ListPolicies:output_type -> authen.v1.PolicyList
+	18, // 41: authen.v1.AdminService.CheckPolicy:output_type -> authen.v1.CheckPolicyResponse
+	20, // 42: authen.v1.AdminService.CompilePolicy:output_type -> authen.v1.CompilePolicyResponse
+	24, // 43: authen.v1.AdminService.ListProposals:output_type -> authen.v1.ProposalList
+	26, // 44: authen.v1.AdminService.ApproveProposal:output_type -> authen.v1.ApproveProposalResponse
+	28, // 45: authen.v1.AdminService.GetServerInfo:output_type -> authen.v1.ServerInfo
+	31, // 46: authen.v1.AdminService.ListSessions:output_type -> authen.v1.SessionList
+	33, // 47: authen.v1.AdminService.RevokeSession:output_type -> authen.v1.RevokeSessionResponse
+	39, // 48: authen.v1.AdminService.IssuePassport:output_type -> authen.v1.IssuePassportResponse
+	32, // [32:49] is the sub-list for method output_type
+	15, // [15:32] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_authen_v1_admin_proto_init() }
@@ -2151,7 +2720,7 @@ func file_authen_v1_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_authen_v1_admin_proto_rawDesc), len(file_authen_v1_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
