@@ -493,6 +493,7 @@ type ListKeysRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pagination    *Pagination            `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	IdentityId    string                 `protobuf:"bytes,2,opt,name=identity_id,json=identityId,proto3" json:"identity_id,omitempty"`
+	Filter        string                 `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -537,6 +538,13 @@ func (x *ListKeysRequest) GetPagination() *Pagination {
 func (x *ListKeysRequest) GetIdentityId() string {
 	if x != nil {
 		return x.IdentityId
+	}
+	return ""
+}
+
+func (x *ListKeysRequest) GetFilter() string {
+	if x != nil {
+		return x.Filter
 	}
 	return ""
 }
@@ -1906,13 +1914,14 @@ const file_authen_v1_admin_proto_rawDesc = "" +
 	"\rregistered_at\x18\x05 \x01(\x03R\fregisteredAt\x12\x16\n" +
 	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
-	"expires_at\x18\a \x01(\x03R\texpiresAt\"i\n" +
+	"expires_at\x18\a \x01(\x03R\texpiresAt\"\x81\x01\n" +
 	"\x0fListKeysRequest\x125\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x15.authen.v1.PaginationR\n" +
 	"pagination\x12\x1f\n" +
 	"\videntity_id\x18\x02 \x01(\tR\n" +
-	"identityId\"M\n" +
+	"identityId\x12\x16\n" +
+	"\x06filter\x18\x03 \x01(\tR\x06filter\"M\n" +
 	"\aKeyList\x12,\n" +
 	"\x04keys\x18\x01 \x03(\v2\x18.authen.v1.PublicKeyInfoR\x04keys\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\")\n" +

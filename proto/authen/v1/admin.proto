@@ -73,6 +73,7 @@ message PublicKeyInfo {
 message ListKeysRequest {
   Pagination pagination = 1;
   string identity_id = 2;
+  string filter = 3;
 }
 
 message KeyList {
