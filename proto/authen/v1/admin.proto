@@ -67,6 +67,7 @@ message PublicKeyInfo {
   string label = 4;
   int64 registered_at = 5;
   string status = 6;
+  int64 expires_at = 7;
 }
 
 message ListKeysRequest {

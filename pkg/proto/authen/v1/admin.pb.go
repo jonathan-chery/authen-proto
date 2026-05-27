@@ -405,6 +405,7 @@ type PublicKeyInfo struct {
 	Label         string                 `protobuf:"bytes,4,opt,name=label,proto3" json:"label,omitempty"`
 	RegisteredAt  int64                  `protobuf:"varint,5,opt,name=registered_at,json=registeredAt,proto3" json:"registered_at,omitempty"`
 	Status        string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	ExpiresAt     int64                  `protobuf:"varint,7,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -479,6 +480,13 @@ func (x *PublicKeyInfo) GetStatus() string {
 		return x.Status
 	}
 	return ""
+}
+
+func (x *PublicKeyInfo) GetExpiresAt() int64 {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return 0
 }
 
 type ListKeysRequest struct {
@@ -1888,7 +1896,7 @@ const file_authen_v1_admin_proto_rawDesc = "" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\"'\n" +
 	"\x15RevokeRegTokenRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
-	"\x16RevokeRegTokenResponse\"\xb5\x01\n" +
+	"\x16RevokeRegTokenResponse\"\xd4\x01\n" +
 	"\rPublicKeyInfo\x12\x15\n" +
 	"\x06key_id\x18\x01 \x01(\tR\x05keyId\x12\x19\n" +
 	"\bkey_type\x18\x02 \x01(\tR\akeyType\x12\x1f\n" +
@@ -1896,7 +1904,9 @@ const file_authen_v1_admin_proto_rawDesc = "" +
 	"identityId\x12\x14\n" +
 	"\x05label\x18\x04 \x01(\tR\x05label\x12#\n" +
 	"\rregistered_at\x18\x05 \x01(\x03R\fregisteredAt\x12\x16\n" +
-	"\x06status\x18\x06 \x01(\tR\x06status\"i\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1d\n" +
+	"\n" +
+	"expires_at\x18\a \x01(\x03R\texpiresAt\"i\n" +
 	"\x0fListKeysRequest\x125\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2\x15.authen.v1.PaginationR\n" +

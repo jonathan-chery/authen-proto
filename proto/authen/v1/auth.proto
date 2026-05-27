@@ -24,6 +24,7 @@ message RegisterRequest {
   string key_id = 4;
   string identity_label = 5;
   map<string, string> metadata = 6;
+  int32 ttl_seconds = 7;
 }
 
 message RegisterResponse {

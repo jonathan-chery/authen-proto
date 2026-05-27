@@ -29,6 +29,7 @@ type RegisterRequest struct {
 	KeyId         string                 `protobuf:"bytes,4,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	IdentityLabel string                 `protobuf:"bytes,5,opt,name=identity_label,json=identityLabel,proto3" json:"identity_label,omitempty"`
 	Metadata      map[string]string      `protobuf:"bytes,6,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	TtlSeconds    int32                  `protobuf:"varint,7,opt,name=ttl_seconds,json=ttlSeconds,proto3" json:"ttl_seconds,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -103,6 +104,13 @@ func (x *RegisterRequest) GetMetadata() map[string]string {
 		return x.Metadata
 	}
 	return nil
+}
+
+func (x *RegisterRequest) GetTtlSeconds() int32 {
+	if x != nil {
+		return x.TtlSeconds
+	}
+	return 0
 }
 
 type RegisterResponse struct {
@@ -893,7 +901,7 @@ var File_authen_v1_auth_proto protoreflect.FileDescriptor
 
 const file_authen_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x14authen/v1/auth.proto\x12\tauthen.v1\x1a\x16authen/v1/common.proto\"\xa9\x02\n" +
+	"\x14authen/v1/auth.proto\x12\tauthen.v1\x1a\x16authen/v1/common.proto\"\xca\x02\n" +
 	"\x0fRegisterRequest\x12\x1b\n" +
 	"\treg_token\x18\x01 \x01(\tR\bregToken\x12\x19\n" +
 	"\bkey_type\x18\x02 \x01(\tR\akeyType\x12\x1d\n" +
@@ -901,7 +909,9 @@ const file_authen_v1_auth_proto_rawDesc = "" +
 	"public_key\x18\x03 \x01(\tR\tpublicKey\x12\x15\n" +
 	"\x06key_id\x18\x04 \x01(\tR\x05keyId\x12%\n" +
 	"\x0eidentity_label\x18\x05 \x01(\tR\ridentityLabel\x12D\n" +
-	"\bmetadata\x18\x06 \x03(\v2(.authen.v1.RegisterRequest.MetadataEntryR\bmetadata\x1a;\n" +
+	"\bmetadata\x18\x06 \x03(\v2(.authen.v1.RegisterRequest.MetadataEntryR\bmetadata\x12\x1f\n" +
+	"\vttl_seconds\x18\a \x01(\x05R\n" +
+	"ttlSeconds\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x9b\x01\n" +
